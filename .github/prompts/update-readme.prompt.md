@@ -56,7 +56,7 @@ Summarize the problem this project solves, the primary audience, and the core te
 
 **Sample Usage (optional)**
 ```<language>
-// minimal runnable example showing a primary scenario
+// minimal runnable example showing at least one, and max three primary scenarios
 ```
 
 ## 🛠️ Developer Quick Start
