@@ -1,60 +1,58 @@
 # .github-prompts
-> Centralized GitHub Copilot prompts and task templates for every `frasermolyneux` repository.
+> Centralized GitHub Copilot instruction library that keeps every `frasermolyneux` repository aligned.
 
-<!-- Badges -->
-![Reference Library](https://img.shields.io/badge/Copilot%20Prompts-Reference%20Library-6f42c1)
+<!-- Badges (duplicate the line below for every workflow) -->
+[![Repository Maintenance](https://img.shields.io/badge/GitHub%20Actions-Not%20Configured-lightgrey)](https://github.com/frasermolyneux/.github-prompts/actions)
 
 ## 📌 Overview
-Reusable instruction files live under `instructions/` so app, infra, and documentation repos can share the same Copilot guidance without duplicating prose. The new `docs/` folder captures how the library is structured and how to author additional entries, giving contributors a single place to understand the prompt architecture before updating `instructions/*.instructions.md`.
+Reusable instruction files under `instructions/` keep application, infrastructure, and documentation repos synchronized without duplicating prose, while `docs/` captures the prompt architecture so contributors can extend the library confidently before touching `instructions/*.instructions.md`.
 
 ## ⚙️ Workflow Status
-| Workflow               | Status                                                                             | Purpose                                                                                       |
-| ---------------------- | ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| Repository maintenance | ![badge](https://img.shields.io/badge/GitHub%20Actions-Not%20Configured-lightgrey) | This repo only publishes reference content, so consuming projects run the automation instead. |
+| Workflow                 | Status                                                                             | Purpose                                                                 |
+| ------------------------ | ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `Repository maintenance` | ![badge](https://img.shields.io/badge/GitHub%20Actions-Not%20Configured-lightgrey) | Docs-only reference library; consuming projects run automation instead. |
+
+## 🧱 Technology & Frameworks
+- `Markdown (GitHub Flavored Markdown 2023 spec)`
+- `YAML 1.2 front matter`
+- `GitHub Actions composite prompts (2025 guidance)`
 
 ## 📚 Documentation Index
-- [docs/library-overview.md](https://github.com/frasermolyneux/.github-prompts/blob/main/docs/library-overview.md) – Explains the mission, layout, and consumption model for the prompt library.
-- [docs/authoring-new-instructions.md](https://github.com/frasermolyneux/.github-prompts/blob/main/docs/authoring-new-instructions.md) – Template and checklist for writing new `*.instructions.md` files.
+- [docs/library-overview.md](https://github.com/frasermolyneux/.github-prompts/blob/main/docs/library-overview.md) – Mission, layout, and consumption model for the shared prompt library.
+- [docs/authoring-new-instructions.md](https://github.com/frasermolyneux/.github-prompts/blob/main/docs/authoring-new-instructions.md) – Template plus checklist for creating additional `*.instructions.md` files.
 
-## 🚀 Quickstart & Key Features
-**Setup**
-```shell
-git clone https://github.com/frasermolyneux/.github-prompts.git
-cd .github-prompts
-code .
-```
+## 🚀 Getting Started
+**Highlights**
+- Central repository for Copilot-ready prompts scoped via YAML front matter.
+- `.github/prompts/` hosts composite prompts such as `update-readme` for multi-step changes.
+- Documentation-first workflow ensures every new pattern ships with discoverable guidance.
 
-**Sample Usage**
+**Sample Usage (optional)**
 ```markdown
 ---
 applyTo: '**/*.cs'
 ---
 
 ## Context
-- Keep .NET clients, DTOs, and APIs aligned across repositories.
+- Keep .NET controllers, DTOs, and clients aligned across repos.
 
 ## Guidance
 - Register typed HTTP clients via `IHttpClientFactory`.
-- Enforce async suffixing and `CancellationToken` flow.
+- Enforce async suffixing with `CancellationToken` support.
 - Return typed envelopes like `ApiResponse<T>`.
 ```
 
-**Highlights**
-- Drop-in prompts scoped via YAML front matter so each repo only loads relevant guidance.
-- Composite prompts in `.github/prompts/` (e.g., `update-readme.prompt.md`) orchestrate multi-step changes with consistent acceptance criteria.
-- Documentation-driven workflow keeps instruction updates discoverable and reviewable across the org.
-
-## 🧩 Related Projects
-- [frasermolyneux/actions](https://github.com/frasermolyneux/actions) – Composite GitHub Actions that rely on the same instructions when building and deploying workloads.
-- [frasermolyneux/portal-repository](https://github.com/frasermolyneux/portal-repository) – Backend/API repo that consumes these prompts to align controller, DTO, and Terraform changes.
-- [frasermolyneux/api-client-abstractions](https://github.com/frasermolyneux/api-client-abstractions) – API client SDKs that reuse the shared C# guidance and documentation patterns defined here.
+## 🛠️ Developer Quick Start
+```shell
+git clone https://github.com/frasermolyneux/.github-prompts.git
+cd .github-prompts
+code .
+```
 
 ## 🤝 Contributing
-
 Please read the [contributing](CONTRIBUTING.md) guidance; this is a learning and development project.
 
 ## 🔐 Security
-
 Please read the [security](SECURITY.md) guidance; I am always open to security feedback through email or opening an issue.
 
 ## 📄 License
