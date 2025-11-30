@@ -1,21 +1,16 @@
 # .github-prompts
 > Centralized GitHub Copilot instruction library that keeps every `frasermolyneux` repository aligned.
 
-<!-- Badges (duplicate the line below for every workflow) -->
-[![Repository Maintenance](https://img.shields.io/badge/GitHub%20Actions-Not%20Configured-lightgrey)](https://github.com/frasermolyneux/.github-prompts/actions)
+`No GitHub Actions workflows configured`
+[![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-Not%20Configured-lightgrey)](https://github.com/frasermolyneux/.github-prompts/actions)
 
 ## 📌 Overview
 Reusable instruction files under `instructions/` keep application, infrastructure, and documentation repos synchronized without duplicating prose, while `docs/` captures the prompt architecture so contributors can extend the library confidently before touching `instructions/*.instructions.md`.
 
-## ⚙️ Workflow Status
-| Workflow                 | Status                                                                             | Purpose                                                                 |
-| ------------------------ | ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| `Repository maintenance` | ![badge](https://img.shields.io/badge/GitHub%20Actions-Not%20Configured-lightgrey) | Docs-only reference library; consuming projects run automation instead. |
-
 ## 🧱 Technology & Frameworks
 - `Markdown (GitHub Flavored Markdown 2023 spec)`
 - `YAML 1.2 front matter`
-- `GitHub Actions composite prompts (2025 guidance)`
+- `GitHub Actions composite prompt design (2025 guidance)`
 
 ## 📚 Documentation Index
 - [docs/library-overview.md](https://github.com/frasermolyneux/.github-prompts/blob/main/docs/library-overview.md) – Mission, layout, and consumption model for the shared prompt library.
@@ -50,10 +45,10 @@ code .
 ```
 
 ## 🤝 Contributing
-Please read the [contributing](CONTRIBUTING.md) guidance; this is a learning and development project.
+Please read the [contributing](https://github.com/frasermolyneux/.github-prompts/blob/main/CONTRIBUTING.md) guidance; this is a learning and development project.
 
 ## 🔐 Security
-Please read the [security](SECURITY.md) guidance; I am always open to security feedback through email or opening an issue.
+Please read the [security](https://github.com/frasermolyneux/.github-prompts/blob/main/SECURITY.md) guidance; I am always open to security feedback through email or opening an issue.
 
 ## 📄 License
 Distributed under the [GNU General Public License v3.0](https://github.com/frasermolyneux/.github-prompts/blob/main/LICENSE).
