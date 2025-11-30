@@ -4,57 +4,32 @@ applyTo: '**/*.cs'
 
 # C# Coding Guidance
 
-## Naming Conventions
+## Structure & Naming
+- Keep namespaces hierarchical (e.g., `Company.Area.Feature`) so related APIs and DTOs group naturally.
+- Use PascalCase for classes such as `ApiClientBase` or `ResponseEnvelope` and prefix interfaces with `I` (`IApiTokenProvider`).
+- Keep method names verb-based, reserve camelCase for parameters/fields, and use ALL_CAPS only for shared constants like `AUTHORIZATION_HEADER`.
 
-- **Namespaces**: Follow a hierarchical structure reflecting the organization and project
-- **Classes**: Use PascalCase for class names (e.g., `ApiClientBase`, `ResponseDto`)
-- **Interfaces**: Prefix with "I" (e.g., `IClient`, `IAuthenticationProvider`)
-- **Methods**: Use PascalCase verbs (e.g., `GetClient`, `CreateClient`)
-- **Properties**: Use PascalCase nouns (e.g., `StatusCode`, `RequestUrl`)
-- **Private Fields**: Use camelCase (e.g., `httpClient`, `logger`)
-- **Parameters**: Use camelCase (e.g., `requestUri`, `cancellationToken`)
+## Async & Threading
+- Every async member must use `async/await`, end with `Async`, surface `Task`/`Task<T>`, and accept a `CancellationToken` (default to `CancellationToken.None` when optional).
+- Avoid `.Result`/`.Wait()`; propagate the `Task` instead and guard shared state through immutability or thread-safe primitives.
 
-## Asynchronous Programming
-
-- Use the `async/await` pattern consistently
-- Suffix asynchronous methods with `Async` (e.g., `GetAsync`, `CreateAsync`)
-- Accept `CancellationToken` parameters in all async methods
-- Use `Task<T>` for methods that return values and `Task` for methods that do not return values
-
-## Error Handling
-
-- Use custom exceptions derived from `ApplicationException`
-- Create domain-specific exceptions when appropriate
-- Log exceptions with appropriate severity levels
-- Return well-defined response objects for API errors
-- Handle transient errors with retry policies via Polly
-
-## Best Practices
-
-- Follow SOLID principles
-- Use dependency injection
-- Use meaningful parameter names
-- Include appropriate XML documentation
-- Write unit tests for all public methods
-- Keep methods small and focused on a single responsibility
-
-## Documentation
-
-- Use XML comments for public APIs
-- Follow the triple-slash `///` format
-- Document parameters with `<param>` tags
-- Document return values with `<returns>` tags
-- Document exceptions with `<exception>` tags
+## Error Handling & Resilience
+- Derive domain exceptions from `ApplicationException` (e.g., `ApiAuthenticationException`, `RequestThrottledException`) and throw them instead of `Exception`.
+- Use `ILogger<T>` with severity matched to impact: `LogError` for hard failures, `LogWarning` for degraded flows, `LogInformation` for key checkpoints, `LogDebug` for noisy traces.
+- Wrap outbound calls with Polly policies that combine exponential backoff + jitter and optional circuit breakers; short-circuit immediately on non-transient HTTP statuses.
+- Return typed envelopes like `ApiResponse<T>` that expose status codes, validation issues, and pagination instead of raw tuples or strings.
 
 ## HTTP Client Pattern
+- Register typed HTTP clients via `IHttpClientFactory`, hide them behind focused interfaces, and keep helper methods under ~50 lines so reviewers can reason about the flow.
+- Normalize authentication (API keys, cached OAuth tokens, Entra ID) in helper methods such as `GetAuthenticationHeaderAsync`; never hand-craft headers per call site.
+- Dispose `HttpRequestMessage` and streaming payloads explicitly while letting the factory own `HttpClient` lifetimes.
+- Log every request/response with correlation IDs, duration, and retry count while redacting secrets.
 
-- Use typed HTTP clients
-- Define client interfaces with clear contracts
-- Implement proper disposal patterns
-- Handle transient faults appropriately using the Polly library
-- Use consistent authentication mechanisms
+## Documentation & Testing
+- Document public APIs with triple-slash XML comments that include `<param>`, `<returns>`, and `<exception>` plus a brief usage sentence when behavior is subtle.
+- Follow Arrange-Act-Assert using xUnit + Moq; store recurring builders/fakes under `Tests/Builders` (or equivalent) to keep test files lean.
+- Favor constructor injection for collaborators (`ILogger<ApiClientBase> logger`, `IApiTokenProvider tokenProvider`) so implementations stay testable.
 
-## Dependencies
-
-- Keep external dependencies minimal
-- Use `Microsoft.Extensions.Logging` for logging
+## Dependencies & Packages
+- Prefer `Microsoft.Extensions.Logging` for structured logs, `Polly` for resilience, `RestSharp`/`HttpClient` for transport, and `Newtonsoft.Json` when custom converters are required.
+- Only add packages when multiple call sites need them; otherwise invest in local helpers or shared abstractions in your solution-level `Directory.Build.props`.
