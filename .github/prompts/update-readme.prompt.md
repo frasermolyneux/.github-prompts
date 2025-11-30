@@ -63,13 +63,13 @@ Summarize the problem this project solves, the primary audience, and the core te
 - [frasermolyneux/<related-repo>](https://github.com/frasermolyneux/<related-repo>) – `<why it matters>`
 
 ## 🤝 Contributing
-Contributions are welcome! Please review [CONTRIBUTING.md](https://github.com/frasermolyneux/<repo>/blob/main/CONTRIBUTING.md) for setup, coding standards, and the review process.
+Please read the [contributing](CONTRIBUTING.md) guidance; this is a learning and development project.
 
 ## 🔐 Security
-Report vulnerabilities via the process in [SECURITY.md](https://github.com/frasermolyneux/<repo>/blob/main/SECURITY.md). Never open public issues for sensitive findings.
+Please read the [security](SECURITY.md) guidance; I am always open to security feedback through email or opening an issue.
 
 ## 📄 License
-Reference or restate the repo's license, if applicable.
+Distributed under the [GNU General Public License v3.0](https://github.com/frasermolyneux/.github-prompts/blob/main/LICENSE).
 ```
 
 ## Success Criteria
