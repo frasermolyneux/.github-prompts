@@ -1,16 +1,16 @@
 # .github-prompts
 > Centralized GitHub Copilot instruction library that keeps every `frasermolyneux` repository aligned.
 
-`No GitHub Actions workflows configured`
-[![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-Not%20Configured-lightgrey)](https://github.com/frasermolyneux/.github-prompts/actions)
+## ⚙️ Workflows
+_No GitHub Actions workflows are configured for this repository._
 
 ## 📌 Overview
 Reusable instruction files under `instructions/` keep application, infrastructure, and documentation repos synchronized without duplicating prose, while `docs/` captures the prompt architecture so contributors can extend the library confidently before touching `instructions/*.instructions.md`.
 
 ## 🧱 Technology & Frameworks
-- `Markdown (GitHub Flavored Markdown 2023 spec)`
-- `YAML 1.2 front matter`
-- `GitHub Actions composite prompt design (2025 guidance)`
+- Markdown (GitHub Flavored Markdown 2023 spec)
+- YAML 1.2 front matter
+- GitHub Actions composite prompt design (2025 guidance)
 
 ## 📚 Documentation Index
 - [docs/library-overview.md](https://github.com/frasermolyneux/.github-prompts/blob/main/docs/library-overview.md) – Mission, layout, and consumption model for the shared prompt library.

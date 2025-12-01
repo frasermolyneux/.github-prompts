@@ -7,7 +7,8 @@ You are rewriting a repository's `README.md` so every project in the `frasermoly
 1. Inspect the existing `README.md`, `docs/` directory, and root metadata (name, primary language, purpose).
 2. If `docs/` does not exist, create it. Move long-form guides, tutorials, or API references out of the README into logically named files inside `docs/`, updating links accordingly. After relocating content, you will still paste the template verbatim—only point to the new files via the Overview and Documentation Index.
 3. Ensure `CONTRIBUTING.md` and `SECURITY.md` exist at the repo root. If either is missing, add a concise placeholder that matches org standards before updating the README.
-4. Discover GitHub Actions workflows (via `.github/workflows/*.yml`) to surface their status badges.
+4. Discover GitHub Actions workflows (via `.github/workflows/*.yml`) and Azure DevOps pipelines (look for `azure-pipelines*.yml` files, `/.azure-devops/` definitions, or docs referencing pipeline names) so you can surface their status badges.
+5. When the existing README already conveys accurate information for a placeholder, reuse its wording verbatim instead of rephrasing; only change text when it conflicts with the template or needs new details.
 
 ## README Requirements
 - Markdown only; keep formatting clean, accessible, and consistent.
@@ -15,10 +16,11 @@ You are rewriting a repository's `README.md` so every project in the `frasermoly
 - Sections (in order): Overview, Technology & Frameworks, Documentation Index, Getting Started, Developer Quick Start, Contributing, Security, License.
 - Treat the Contributing, Security, and License sections as immutable text blocks—copy them from the template verbatim without rewriting their language.
 - Treat the entire README template as immutable boilerplate except for the explicit placeholder tokens (the parts inside `<...>` or fenced code blocks that ask for repo-specific commands/content). Any content you moved into `docs/` should be referenced through those placeholders rather than rewriting template prose.
+- Preserve previously correct phrasing when filling placeholders; avoid stylistic rewrites or synonym swaps unless the original text is inaccurate or incomplete.
 - Technology & Frameworks must list the primary languages, runtimes, cloud services, or infrastructure stacks with their supported versions (e.g., `.NET 9`, `.NET 10`, `Terraform 1.9`, `Azure Functions v4`). Keep the list short and scannable.
 - Getting Started should highlight the project’s key features and, where applicable, include a concise code sample or usage snippet.
 - Developer Quick Start must provide clone, dependency installation, build, and run steps tailored to the repo.
-- For each workflow, add a badge line at the top of the README using the provided badge block; ensure every workflow discovered in Preparation step 4 has a corresponding badge link.
+- For each GitHub workflow or Azure DevOps pipeline, add a badge line at the top of the README using the provided badge block; ensure every workflow or pipeline discovered in Preparation step 4 has a corresponding badge link.
 - Documentation index must include every file under `docs/` (recursively). List files individually (no folder-only summaries); when a file lives in a subfolder, indent the bullet under its parent folder to show hierarchy while still linking directly to the file.
 - For technology version discovery, inspect `global.json`, `Directory.Build.props`, `package.json`, `requirements.txt`, or Terraform/Azure configuration files so you cite concrete versions. Source licensing info from the root `LICENSE` (or `license` metadata) and verify `CONTRIBUTING.md` / `SECURITY.md` contents before referencing them.
 - Quickstart must show either a runnable code sample or clear setup commands plus a bulleted feature list.
@@ -32,8 +34,12 @@ Use this template verbatim. Only replace the placeholder tokens wrapped in angle
 # <Project Name>
 > <One-sentence value proposition>
 
-`<Badges (duplicate the line below for every workflow)>`
+## ⚙️ Workflows
+<!--GitHub Actions badges - duplicate the line below for every workflow-->
 [![Build](https://github.com/frasermolyneux/<repo>/actions/workflows/<workflow>.yml/badge.svg)](https://github.com/frasermolyneux/<repo>/actions/workflows/<workflow>.yml)
+
+<!--Azure DevOps pipeline badges - duplicate the line below for every pipeline-->
+[![Pipeline: Build](https://dev.azure.com/<org>/<project>/_apis/build/status/<pipeline>?branchName=main)](https://dev.azure.com/<org>/<project>/_build/latest?definitionId=<id>&branchName=main)
 
 ## 📌 Overview
 Summarize the problem this project solves, the primary audience, and the core tech stack in 2–3 sentences. Link to any newly created docs for background.
